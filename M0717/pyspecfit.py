@@ -65,6 +65,6 @@ lsfdata = np.loadtxt(redLSF)
 lsf2 = ArbitraryLSF(lsfdata[:,1])
 inst_lsf = [lsf1, lsf2]
 
-if not os.path.exists(options.output_prefix): os.mkdir(options.output_prefix)
+#if not os.path.exists(options.output_prefix): os.mkdir(options.output_prefix)
 specfit(specdata, specerror, photdata, priors,
         model, options, inst_lsf, specmaskfiles=specmaskfiles)
