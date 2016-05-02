@@ -20,7 +20,8 @@ redLSF = sys.argv[1]+'_R_'+outname+'.lsf'
 # Set up a simple stellar population model (no SFH or dust)
 #
 priors = [{'z':     GaussianPrior(float(sys.argv[3]), 0.05),
-           'HpsEW': UniformPrior(0., 100.)},
+           'HpsEW': UniformPrior(0., 100.),
+           'OIIIpsEW': UniformPrior(0., 100.)},
           {'age':   LogUniformPrior(1e8, 10e9)}]
 csp = CSP(sfh=None,dust=None)
 csp.param['metal'] = 0.02
@@ -65,6 +66,6 @@ lsfdata = np.loadtxt(redLSF)
 lsf2 = ArbitraryLSF(lsfdata[:,1])
 inst_lsf = [lsf1, lsf2]
 
-#if not os.path.exists(options.output_prefix): os.mkdir(options.output_prefix)
+if not os.path.exists(options.output_prefix): os.mkdir(options.output_prefix)
 specfit(specdata, specerror, photdata, priors,
         model, options, inst_lsf, specmaskfiles=specmaskfiles)
