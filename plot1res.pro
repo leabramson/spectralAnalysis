@@ -21,7 +21,7 @@ pro plot1res, blueRes, redRes, redshift
   inner  = [innSpecB, innSpecR]
   innMod = [innModelB, innModelR]
 
-  plot, lambda, smooth(inner, 2), yran = [0,400]
+  plot, lambda, inner, yran = [0,400]
   oplot, lambda, innMod, col = 255, thick = 1
 
   stop
