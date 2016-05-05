@@ -1,0 +1,15 @@
+#    field glass_ID  glass_z glass_zq mag magnification  lmass      lsfr  
+MACS0717_CTR   399 1.68700 4.00000  20.7862  4.29       11.34      0.99   
+MACS0717_CTR  1236 1.12900 4.00000  20.9993  7.28       10.73      2.08   
+MACS0717_CTR  1266 1.09800 1.00000  20.6769  1.22       10.69     -1.57   
+MACS1149_CTR   753 1.08600 4.00000  20.4561  2.48       11.23      0.94   
+MACS2129_CTR   839 1.37250 3.50000  20.8251  3.81       11.23     -1.03   
+MACS2129_CTR   841 1.37150 2.50000  20.9096  3.81       10.98     -2.64   
+MACS2129_CTR   843 1.37000 3.00000  20.8191  3.81       11.09      0.19   
+MACS2129_CTR   845 1.37150 3.50000  20.9527  3.81       11.11     -6.32   
+MACS2129_CTR   960 1.60000 1.00000  20.6538  3.81       11.11     -0.06   
+MACS2129_CTR   965 1.38700 2.00000  20.9548  3.81       10.88     -0.29   
+MACS2129_CTR  1681 1.08500 4.00000  20.4990  3.81       11.14      1.39   
+
+# Magnification from HFF calculator ignoring Zitirn's models.
+For M2129 (non HFF), mags are the mean of the HFF magnification results.

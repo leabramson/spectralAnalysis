@@ -1,32 +1,32 @@
-pro plot3res, prefix, OIII = oiii
+pro plot3res, prefix, pa, OIII = oiii
 
   if keyword_set(OIII) then oiii = 1 else oiii = 0
 
   ;; Read results
   if NOT oiii then begin
-     innerRes = grabPyspecResults(prefix+'inner.analyze')
-     interRes = grabPyspecResults(prefix+'inter.analyze')
-     outerRes = grabPyspecResults(prefix+'outer.analyze')
+     innerRes = grabPyspecResults(prefix+'inner'+string(pa, f='(I1)')+'.analyze')
+     interRes = grabPyspecResults(prefix+'inter'+string(pa, f='(I1)')+'.analyze')
+     outerRes = grabPyspecResults(prefix+'outer'+string(pa, f='(I1)')+'.analyze')
   endif else begin
-     innerRes = grabPyspecResults(prefix+'inner.analyze', /oiii)
-     interRes = grabPyspecResults(prefix+'inter.analyze', /oiii)
-     outerRes = grabPyspecResults(prefix+'outer.analyze', /oiii)
+     innerRes = grabPyspecResults(prefix+'inner'+string(pa, f='(I1)')+'.analyze', /oiii)
+     interRes = grabPyspecResults(prefix+'inter'+string(pa, f='(I1)')+'.analyze', /oiii)
+     outerRes = grabPyspecResults(prefix+'outer'+string(pa, f='(I1)')+'.analyze', /oiii)
   endelse
    
   ;; Read G102
-  readcol, prefix+'inner.bestspec0', $
+  readcol, prefix+'inner'+string(pa, f='(I1)')+'.bestspec0', $
            lambdaB, innTraceB, innEerrB, innPolyB, innModelB, innUsedB
-  readcol, prefix+'inter.bestspec0', $
+  readcol, prefix+'inter'+string(pa, f='(I1)')+'.bestspec0', $
            lambdaB, intTraceB, intEerrB, intPolyB, intModelB, intUsedB
-  readcol, prefix+'outer.bestspec0', $
+  readcol, prefix+'outer'+string(pa, f='(I1)')+'.bestspec0', $
            lambdaB, outTraceB, outEerrB, outPolyB, outModelB, outUsedB
 
   ;; Read G141
-  readcol, prefix+'inner.bestspec1', $
+  readcol, prefix+'inner'+string(pa, f='(I1)')+'.bestspec1', $
            lambdaR, innTraceR, innEerrR, innPolyR, innModelR, innUsedR
-  readcol, prefix+'inter.bestspec1', $
+  readcol, prefix+'inter'+string(pa, f='(I1)')+'.bestspec1', $
            lambdaR, intTraceR, intEerrR, intPolyR, intModelR, intUsedR
-  readcol, prefix+'outer.bestspec1', $
+  readcol, prefix+'outer'+string(pa, f='(I1)')+'.bestspec1', $
            lambdaR, outTraceR, outEerrR, outPolyR, outModelR, outUsedR
 
   ;; Do G102
@@ -76,6 +76,27 @@ pro plot3res, prefix, OIII = oiii
   oplot, lambda, innMod, col = 110
   oplot, lambda, intMod, col = '0044ff'x  
   oplot, lambda, outMod, col = 'ff0000'x
+
+  r       = [0, mean([0.25,0.75]), mean([0.75,1.50])]
+  ageGrad = [innerRes.AGEFIT, interRes.AGEFIT, outerRes.AGEFIT]
+  ageHi   = [innerRes.AGEHI, interRes.AGEHI, outerRes.AGEHI]
+  ageLo   = [innerRes.AGELO, interRes.AGELO, outerRes.AGELO]
+  ageEHi  = 0.434 * (ageHi - ageGrad) / ageGrad
+  ageELo  = 0.434 * (ageLo - ageGrad) / ageGrad * (-1)
+  ageGrad = alog10(ageGrad)
+
+  HaGrad  = [innerRes.EWFIT, interRes.EWFIT, outerRes.EWFIT]
+  HaHi    = [innerRes.EWHI, interRes.EWHI, outerRes.EWHI]
+  HaLo    = [innerRes.EWLO, interRes.EWLO, outerRes.EWLO]
+  HaEHi   = HaHi - HaGrad
+  HaELo   = HaGrad - HaLo
+
+  OIIIGrad  = [innerRes.EWFIT_OIII, interRes.EWFIT_OIII, outerRes.EWFIT_OIII]
+  OIIIHi    = [innerRes.EWHI_OIII, interRes.EWHI_OIII, outerRes.EWHI_OIII]
+  OIIILo    = [innerRes.EWLO_OIII, interRes.EWLO_OIII, outerRes.EWLO_OIII]
+  OIIIEHi   = OIIIHi - OIIIGrad
+  OIIIELo   = OIIIGrad - OIIILo
+  
   
   stop
   

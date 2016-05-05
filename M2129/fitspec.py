@@ -1,1 +1,1 @@
-../test_GLASS_pyspec_input.py
+../fitspec.py

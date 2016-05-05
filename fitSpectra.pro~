@@ -1,0 +1,14 @@
+pro fitSpectra, dirlist
+
+  readcol, dirlist, dirs, f = 'A'
+  ndirs = n_elements(dirs)
+
+  for ii = 0, ndirs - 1 do begin
+     spawn, 'ls '+dirs[ii]+'/*_1_B*.fits > tmpObjects.list'
+     
+     
+  endfor
+  
+
+end
+  

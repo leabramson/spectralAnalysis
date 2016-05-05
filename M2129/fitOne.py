@@ -60,8 +60,8 @@ options.tabulated_data = True
 # Here using a stacked profile of the target galaxies. There should be an odd number
 # of lines, such that the central line is the center of the LSF, with lines at one
 # pixels intervals.
-lsfdata = np.loadtxt(sys.argv[1]+'.lsf')
-lsf1 = ArbitraryLSF(lsfdata[:,1])
+#lsfdata = np.loadtxt(sys.argv[1]+'.lsf')
+lsf1 = GaussianVelocityLSF(1500.)#ArbitraryLSF(lsfdata[:,1])
 #lsfdata = np.loadtxt(redLSF)
 #lsf2 = ArbitraryLSF(lsfdata[:,1])
 inst_lsf = [lsf1]#, lsf2]
