@@ -1,0 +1,14 @@
+pro plotPyspecInput, xb, yb, eb, xr, yr, er, SN = SN
+
+  if NOT keyword_set(SN) then begin
+     plot, xb, yb, xran = [7.5,17] * 1e3, yran = [0,400]
+     oplot, xr, yr, col = '777777'x
+     oplot, xb, eb, col = 255, thick = 1
+     oplot, xr, er, col = 100, thick = 1
+  endif else begin
+     plot, xb, yb / eb, xran = [7.5,17] * 1e3, yran = [0,30]
+     oplot, xr, yr / er, col = '777777'x
+  endelse
+     
+  
+end

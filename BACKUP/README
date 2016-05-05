@@ -1,0 +1,86 @@
+First revision -- 04 May 2016
+
+This folder contains the first round of GLASS sources
+for which full-spectrum SPS modelling will be performed,
+with the specific aim of identifying stellar population
+gradients.
+
+The sources are listed below and found in the directories
+named by the associated cluster fields ("M1149", etc.).
+
+The selection criteria were:
+
+    1.0 < z < 1.8 && mag_GLASS < 21
+
+(see both columns below). Selection was performed using the
+"Master" GLASS catalogs on L.E. Abramson's laptop (soon to
+be ported to MIKADO) in March 2016, and the routines CUTONMAG.pro
+and CUTONZ.pro also located there. As of that time, catalogs
+had been compiled for 6 clusters.
+
+All sources are drawn form the central GLASS pointing, for which
+both G102 and G141 data are available.
+
+#field    glass_ID glass_z glass_zq      mag  magnify   lmass     lsfr  
+MACS0717_CTR   399 1.68700  4.00000  20.7862     4.29   11.34    0.99   FIT 20160504 
+MACS0717_CTR  1236 1.12900  4.00000  20.9993     7.28   10.73    2.08   FIT 20160504
+MACS0717_CTR  1266 1.09800  1.00000  20.6769     1.22   10.69   -1.57   ***
+MACS1149_CTR   753 1.08600  4.00000  20.4561     2.48   11.23    0.94   FIT 20160504
+MACS2129_CTR   839 1.37250  3.50000  20.8251     3.81   11.23   -1.03   FIT 20160504
+MACS2129_CTR   841 1.37150  2.50000  20.9096     3.81   10.98   -2.64   FIT 20160504
+MACS2129_CTR   843 1.37000  3.00000  20.8191     3.81   11.09    0.19   FIT 20160504
+MACS2129_CTR   845 1.37150  3.50000  20.9527     3.81   11.11   -6.32   FIT 20160504
+MACS2129_CTR   960 1.60000  1.00000  20.6538     3.81   11.11   -0.06   ***
+MACS2129_CTR   965 1.38700  2.00000  20.9548     3.81   10.88   -0.29   ***
+MACS2129_CTR  1681 1.08500  4.00000  20.4990     3.81   11.14    1.39   FIT 20160504
+
+# Magnification from HFF calculator ignoring Zitirn's models.
+For M2129 (non HFF), mags are the mean of the HFF magnification results.
+*** = unreliable redshift = NOT FIT FOR May 2016 GLASS MEETING @ UCLA.
+
+The files associated with each source are:
+
+    1. glassID_PA_grism_region.pyspec -- the 1D extracted spectrum for
+       				      	 source "glassID" in a given cluster pointing.
+				     	 "PA" is either "1" or "2" (one for each
+				     	 GLASS PA), "grism" is "B" or "R"
+					 for G102 or G141, respectively, and "region"
+					 is "inner", "inter", or "outer" depending on which
+					 radial section of the 2D spectrum the 1D trace was
+					 extracted from. As of May 2016, these came from
+					 radial regimes:
+
+					 inner ... |r| < 0.25 r_e
+					 inter ... 0.25 < |r| < 0.75 r_e
+					 outer ... 0.75 < |r| < 1.50 r_e
+
+					 These regimes are defined and the 1D spectra are
+					 extracted using EXTRACT_1.pro on L.E. Abramson's
+					 laptop (soon to be ported to MIKADO). They are then
+					 reformatted into ASCII files by WRITEFORPYSPECFIT.pro
+					 to have 4 columns: "WAVELENGTH FLUX ERROR MASK", where
+					 wavelength is in the OBSERVED frame and MASK = 1 for
+					 GOOD pixels. Errors are extracted from the "eht"
+					 extension from the GLASS 2D spectrum files in the
+					 same radial boxes as the 1D traces.
+
+					 R_e is calculated from Moffat profile fits to the
+					 direct image of a target (FITS extension "dsci") collapsed
+					 along the spectral direction.
+
+    2. glassID_PA_grism_region.lsf    -- the line spread function for the same target as the
+       				      	 above. Also calculated in EXTRACT_1.pro, but taken as
+					 a Moffat fit to the direct image collapsed in the
+					 SPATIAL direction. (I.e., same LSF for all radii; this
+					 should be improved in future iterations).
+
+Fitting procedure is:
+
+	"mpirun -np XX python fitspec.py glassID_PA REGION redshift redshift_prior_width outputDirectoryPrefix"
+
+Code is from DREW NEWMAN. Must run "source $PYSPECFIT/bashdef" or it won't work!
+
+With few exceptions, there is one "good" PA per source.
+
+Error calculations were off by a factor of sqrt(SENSITIVITY) until 03 May 2016. -- CORRECTED
+
