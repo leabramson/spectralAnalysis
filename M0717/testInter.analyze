@@ -1,7 +1,0 @@
-# parameter median 1siglo 1sighi
-z 1.11309 1.11149 1.11459
-HpsEW 85.5646 80.8636 90.7277
-age 3.94724e+08 3.62934e+08 4.18917e+08
-
-evidence -983.243450076 +- 0.0332744375703
-max-likelihood model chi2spec / ndata = 1947.739 / 502 = 3.880
