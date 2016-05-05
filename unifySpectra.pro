@@ -1,4 +1,5 @@
-pro unifyForPyspecfit, blueSpecFile, redSpecFile
+pro unifySpectra, blueSpecFile, redSpecFile, $
+                       OUTPUT = output
 
   bluData = mrdfits(blueSpecFile, 1)
   redData = mrdfits(redSpecFile, 1)
@@ -73,7 +74,11 @@ pro unifyForPyspecfit, blueSpecFile, redSpecFile
      outer_var[ii] = 1. / (1. / bout_err[ii] + 1. / rout_err[ii])
   endfor
   
-  stop
+  savedata = {LAMBDA: lambda, REDSHIFT: bluData.Z, $
+              INNER: inner, INNER_VAR: inner_var, $
+              INTER: inter, INTER_VAR: inter_var, $
+              OUTER: outer, OUTER_VAR: outer_var}
+
+  mwrfits, savedata, output, /create
   
 end
-; unifyForPyspecfit, '753_1_B.fits', '753_1_R.fits'

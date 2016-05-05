@@ -1,0 +1,23 @@
+pro unifyMultiple, dirlist
+
+  readcol, dirlist, dirs, f = 'A'
+  ndirs = n_elements(dirs)
+
+  for ii = 0, ndirs - 1 do begin
+     targ = strmid(dirs[ii], 6, strpos(dirs[ii], "_") - 6)
+     b1 = dir[ii]+'/'+targ+'_1_B.fits'
+     r1 = dir[ii]+'/'+targ+'_1_R.fits'
+     b2 = dir[ii]+'/'+targ+'_2_B.fits'
+     r2 = dir[ii]+'/'+targ+'_2_R.fits'
+
+     unifyForPyspecfit, b1, r1, dir[ii]+'/'+targ+'_1_unified_1D.fits'
+     unifyForPyspecfit, b2, r2, dir[ii]+'/'+targ+'_2_unified_1D.fits'
+
+     print, ''
+     print, 'Unified spectra for '+dirs[ii]+' written to : '+dir[ii]+'/'+targ+'_X_unified_1D.fits'
+     print, ''
+     
+  endfor
+
+end
+;unifyMultiple, 'resultDirs.list'
