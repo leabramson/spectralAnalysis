@@ -10,8 +10,9 @@ named by the associated cluster fields ("M1149", etc.).
 
 The selection criteria were:
 
-    1.0 < z < 1.8 && mag_GLASS < 21
-
+    1.0 < z < 1.8 && mag_GLASS < 21 (ORIGINAL SAMPLE)
+    1.0 < z < 1.8 && mag_GLASS < 21.5 (AS OF 6 MAY 2016)
+    
 (see both columns below). Selection was performed using the
 "Master" GLASS catalogs on L.E. Abramson's laptop (soon to
 be ported to MIKADO) in March 2016, and the routines CUTONMAG.pro
@@ -21,6 +22,8 @@ had been compiled for 6 clusters.
 All sources are drawn form the central GLASS pointing, for which
 both G102 and G141 data are available.
 
+Original sample: ('allCl_1.2_1.8_20_21.list' + masses & SFRs from Takahiro's FAST fitting; the "1.2" is a typo)
+----------------
 #field    glass_ID glass_z glass_zq      mag  magnify   lmass     lsfr  
 MACS0717_CTR   399 1.68700  4.00000  20.7862     4.29   11.34    0.99   FIT 20160504 
 MACS0717_CTR  1236 1.12900  4.00000  20.9993     7.28   10.73    2.08   FIT 20160504
@@ -33,10 +36,27 @@ MACS2129_CTR   845 1.37150  3.50000  20.9527     3.81   11.11   -6.32   FIT 2016
 MACS2129_CTR   960 1.60000  1.00000  20.6538     3.81   11.11   -0.06   ***
 MACS2129_CTR   965 1.38700  2.00000  20.9548     3.81   10.88   -0.29   ***
 MACS2129_CTR  1681 1.08500  4.00000  20.4990     3.81   11.14    1.39   FIT 20160504
-
+        
 # Magnification from HFF calculator ignoring Zitirn's models.
 For M2129 (non HFF), mags are the mean of the HFF magnification results.
 *** = unreliable redshift = NOT FIT FOR May 2016 GLASS MEETING @ UCLA.
+
+Extended to Fainter Srcs.: ('uniqAllCl_1.0_1.8_0_21.5.list')**
+--------------------------
+#FIELD GLASS_ID     glass_Z       ZQ      MAG
+MACS0717_CTR   454  1.68950  4.00000  21.4526
+MACS0717_CTR  1564  1.01400  2.50000  21.1390
+MACS0717_CTR  1889  1.35000  2.00000  21.3875
+MACS1149_CTR   520  1.08560  4.00000  21.4017
+MACS1149_CTR   900  1.03300  4.00000  21.2238
+MACS1149_CTR  1931  1.40710  4.00000  21.1797
+MACS1423_CTR  1090  1.50600  3.00000  21.2142
+MACS1423_CTR  1916  1.43500  3.00000  21.3419
+MACS2129_CTR  1050  1.79500  2.00000  21.3066
+MACS2129_CTR  1126  1.36700  4.00000  21.1536
+RXJ1347_CTR   1419  1.14500  4.00000  21.1503
+
+** these are stored in M????_faint/ directories
 
 The files associated with each source are:
 
