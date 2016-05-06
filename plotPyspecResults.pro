@@ -39,7 +39,7 @@ pro plotPyspecResults, field, objno, PA, $
   if NOT keyword_set(MASS) then mass = -99
   if NOT keyword_set(MAG) then mag = 1.
 
-  mass /= mag
+  mass -= alog10(mag)
 
   pa = string(pa, f = '(I1)')
   objno = strcompress(string(fix(objno)), /rem)
