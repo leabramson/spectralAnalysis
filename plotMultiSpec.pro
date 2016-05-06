@@ -15,6 +15,12 @@ end
 ; plotMultiSpec, 'M0717', 'M0717', /unified
 ; plotMultiSpec, 'M1149', 'M1149', /unified
 ; plotMultiSpec, 'M2129', 'M2129', /unified
+
+; plotMultiSpec, 'M0717_faint', 'M0717_faint', /unified
+; plotMultiSpec, 'M1149_faint', 'M1149_faint', /unified
+; plotMultiSpec, 'M1423_faint', 'M1423_faint', /unified
+; plotMultiSpec, 'M2129_faint', 'M2129_faint', /unified
+; plotMultiSpec, 'R1347_faint', 'R1347_faint', /unified
 pro plotMultiSpec, field, outdir, UNIFIED = unified
 
   if NOT keyword_Set(UNIFIED) then unified = 0 else unified = 1
