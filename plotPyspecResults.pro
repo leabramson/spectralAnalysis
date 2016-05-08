@@ -343,4 +343,22 @@ pro doAll
   plotPyspecResults, 'M2129',   '845', '2', mass = 11.11, mag = 3.81 ;     -6.32   FIT 20160504
   plotPyspecResults, 'M2129',  '1681', '2', mass = 11.14, mag = 3.81 ;      1.39   FIT 20160504
 
+  plotPyspecResults, 'M0717_faint',  '454', '1'
+  plotPyspecResults, 'M0717_faint',  '1564', '1'
+  plotPyspecResults, 'M1149_faint',  '520', '1'
+  plotPyspecResults, 'M1149_faint',  '900', '1'
+  plotPyspecResults, 'M1149_faint',  '1931', '1'  1.40710  4.00000  21.1797 ** PA 1   fit 20160507
+  plotPyspecResults, 'M1423_faint',  '1090', '1'
+  plotPyspecResults, 'M2129_faint',  '1050', '1'  
+  plotPyspecResults, 'M2129_faint',  '1126', '1' 
+  plotPyspecResults, 'R1347_faint',  '1419', '1'  1.14500  4.00000  21.1503 ** PA 1   
+
+  plotPyspecResults, 'M0717_faint',  '454', '2'
+  plotPyspecResults, 'M0717_faint',  '1564', '2'
+  plotPyspecResults, 'M1149_faint',  '520', '2'
+  plotPyspecResults, 'M1149_faint',  '900', '2'
+  plotPyspecResults, 'M1423_faint',  '1090', '2'
+  plotPyspecResults, 'M2129_faint',  '1050', '2'  
+  plotPyspecResults, 'M2129_faint',  '1126', '2' 
+
 end
