@@ -1,0 +1,1 @@
+../pyspec1ID.pro
