@@ -44,17 +44,17 @@ For M2129 (non HFF), mags are the mean of the HFF magnification results.
 Extended to Fainter Srcs.: ('uniqAllCl_1.0_1.8_0_21.5.list')**
 --------------------------
 #FIELD GLASS_ID     glass_Z       ZQ      MAG
-MACS0717_CTR   454  1.68950  4.00000  21.4526
-MACS0717_CTR  1564  1.01400  2.50000  21.1390
-MACS0717_CTR  1889  1.35000  2.00000  21.3875
-MACS1149_CTR   520  1.08560  4.00000  21.4017
-MACS1149_CTR   900  1.03300  4.00000  21.2238
-MACS1149_CTR  1931  1.40710  4.00000  21.1797
-MACS1423_CTR  1090  1.50600  3.00000  21.2142
-MACS1423_CTR  1916  1.43500  3.00000  21.3419
-MACS2129_CTR  1050  1.79500  2.00000  21.3066
-MACS2129_CTR  1126  1.36700  4.00000  21.1536
-RXJ1347_CTR   1419  1.14500  4.00000  21.1503 ** PA1 fit 20160506 | mpirun -np 12 python fitspec.py 1419_1 INNER 1.14500 0.01 1419_results/inner1
+MACS0717_CTR   454  1.68950  4.00000  21.4526 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 454_1 INNER 1.6895 0.05 454_results/inner1
+MACS0717_CTR  1564  1.01400  2.50000  21.1390 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 1564_1 INNER 1.01400 0.05 1564_results/inner1
+MACS0717_CTR  1889  1.35000  2.00000  21.3875 not fit; crappy spec
+MACS1149_CTR   520  1.08560  4.00000  21.4017 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 520_1 INNER 1.08560 0.05 520_results/inner1
+MACS1149_CTR   900  1.03300  4.00000  21.2238 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 900_1 INNER 1.03300 0.05 900_results/inner1
+MACS1149_CTR  1931  1.40710  4.00000  21.1797 ** PA 1   fit 20160507 | mpirun -np 12 python fitspec.py 1931_1 INNER 1.40710 0.05 1931_results/inner1
+MACS1423_CTR  1090  1.50600  3.00000  21.2142 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 1090_1 INNER 1.50600 0.05 1090_results/inner1
+MACS1423_CTR  1916  1.43500  3.00000  21.3419 ** ONLY PA2 AVAILABLE -- REWRITE "DO1FIELD.PRO" 
+MACS2129_CTR  1050  1.79500  2.00000  21.3066 ** PA 1 2 fit 20160506 | mpirun -np 12 python fitspec.py 1050_1 INNER 1.79500 0.05 1050_results/inner1
+MACS2129_CTR  1126  1.36700  4.00000  21.1536 ** PA 1 2 fit 20160506 | mpirun -np 12 python fitspec.py 1126_1 INNER 1.36700 0.01 1126_results/inner1
+RXJ1347_CTR   1419  1.14500  4.00000  21.1503 ** PA 1   fit 20160506 | mpirun -np 12 python fitspec.py 1419_1 INNER 1.14500 0.01 1419_results/inner1
 
 ** these are stored in M????_faint/ directories
 
@@ -103,4 +103,3 @@ Code is from DREW NEWMAN. Must run "source $PYSPECFIT/bashdef" or it won't work!
 With few exceptions, there is one "good" PA per source.
 
 Error calculations were off by a factor of sqrt(SENSITIVITY) until 03 May 2016. -- CORRECTED
-
