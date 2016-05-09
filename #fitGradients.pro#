@@ -1,0 +1,25 @@
+pro fitGradients, resultsFile, PARAM = param
+
+  data   = mrdfits(resultsFile, 1)
+  files  = data.FILE
+  nfiles = n_elements(files)
+
+  
+     nfit1 = poly_fit(nr1, mids1, $
+                      measure_err = 0.5 * (his1 + los1), $
+                      sig = nsig1)
+     nfit2 = poly_fit(nr2, mids2, $
+                      measure_err = 0.5 * (his2 + los2), $
+                      sig = nsig2)
+     pfit1 = poly_fit(pr1, mids1, $
+                      measure_err = 0.5 * (his1 + los1), $
+                      sig = psig1)
+     pfit2 = poly_fit(pr2, mids2, $
+                      measure_err = 0.5 * (his2 + los2), $
+                      sig = psig2)
+
+     savedata = {NORM_RAD1: nr1, NORM_RAD2: nr2, $
+                 NINT1: nfit1[0], }
+     
+  
+end

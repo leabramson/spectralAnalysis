@@ -1,6 +1,7 @@
 ;; Plot output from GETFITPARAMS.pro (FITS FORMAT!)
 
-pro plotFitParams, resultsFile, PARAM = param
+pro plotFitParams, resultsFile, $
+                   PARAM = param, OUTPUT = output
 
   data   = mrdfits(resultsFile, 1)
   files  = data.FILE
@@ -12,8 +13,10 @@ pro plotFitParams, resultsFile, PARAM = param
   pa1targlist = strarr(2, nfiles)  ;;  [Red, Blue] fits files
   pa2targlist = strarr(2, nfiles)
   for ii = 0, nfiles - 1 do begin
-     dir  = [dir, strmid(files[ii], 0, 5)]
-     targ = [targ, strmid(files[ii], 6, strpos(files[ii], "_") - 6)]
+     slash = strpos(files[ii], '/')
+     dir  = [dir, strmid(files[ii], 0, slash)]
+     targ = [targ, strmid(files[ii], slash+1, $
+                         strpos(files[ii], '_', /reverse_search) - slash - 1)]
      pa1targlist[*, ii] = [dir[ii]+'/'+targ[ii]+'_1_B.fits', $
                            dir[ii]+'/'+targ[ii]+'_1_R.fits']
      pa2targlist[*, ii] = [dir[ii]+'/'+targ[ii]+'_2_B.fits', $
@@ -68,7 +71,7 @@ pro plotFitParams, resultsFile, PARAM = param
   endcase
 
   set_plot, 'PS'
-  device, filename = 'test_'+param+'.eps', $
+  device, filename = output, $
           /col, /encap, /decomp, bits_per_pix = 8, $
           xsize = 4, ysize = 10, /in
   multiplot, [1,nfiles], ygap = 0.005
@@ -91,19 +94,19 @@ pro plotFitParams, resultsFile, PARAM = param
               charsize = 1.25, charthick = 4, $
               xthick = 5, ythick = 5, yminor = 2, $
               xtickname = replicate( ' ',60), /ynoz, $
-              title = ttl
+              title = ttl, /xsty
      endif else if ii gt 0 AND ii lt nfiles - 1 then begin
         plot, nr1, mids1, /nodat, $
               xran = [0,1.5], yran = yr, $
               charsize = 1.25, charthick = 4, $
               xthick = 5, ythick = 5, yminor = 2, $
-              xtickname = replicate( ' ',60), /ynoz 
+              xtickname = replicate( ' ',60), /ynoz , /xsty
      endif else begin
         plot, nr1, mids1, /nodat, $
               xran = [0,1.5], yran = yr, $
               charsize = 1.25, charthick = 4, $
               xthick = 5, ythick = 5, yminor = 2, $
-              xtitle = '!18r / r!X!De!N'
+              xtitle = '!18r / r!X!De!N', /xsty
      endelse
      xxx1 = [nr1, reverse(nr1)] < !X.CRANGE[1]
      xxx2 = [nr2, reverse(nr2)] < !X.CRANGE[1]
@@ -129,7 +132,7 @@ pro plotFitParams, resultsFile, PARAM = param
   endfor
 
   device, /close
-  spawn, 'gv '+'test_'+param+'.eps'
+  spawn, 'gv '+output
   
   stop
   
