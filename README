@@ -54,7 +54,7 @@ MACS1423_CTR  1090  1.50600  3.00000  21.2142 ** PA 1 2 fit 20160507 | mpirun -n
 MACS1423_CTR  1916  1.43500  3.00000  21.3419 ** ONLY PA2 AVAILABLE -- REWRITE "DO1FIELD.PRO" 
 MACS2129_CTR  1050  1.79500  2.00000  21.3066 ** PA 1 2 fit 20160506 | mpirun -np 12 python fitspec.py 1050_1 INNER 1.79500 0.05 1050_results/inner1
 MACS2129_CTR  1126  1.36700  4.00000  21.1536 ** PA 1 2 fit 20160506 | mpirun -np 12 python fitspec.py 1126_1 INNER 1.36700 0.01 1126_results/inner1
-RXJ1347_CTR   1419  1.14500  4.00000  21.1503 ** PA 1   fit 20160506 | mpirun -np 12 python fitspec.py 1419_1 INNER 1.14500 0.01 1419_results/inner1
+RXJ1347_CTR   1419  1.14500  4.00000  21.1503 ** PA 1 2 fit 20160507 | mpirun -np 12 python fitspec.py 1419_1 INNER 1.14500 0.01 1419_results/inner1
 
 ** these are stored in M????_faint/ directories
 
